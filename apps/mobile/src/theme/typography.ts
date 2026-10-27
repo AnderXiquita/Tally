@@ -1,5 +1,7 @@
 import { Platform, type TextStyle } from 'react-native';
 
+import { LOGO } from './logo';
+
 // Familias y pesos embebidos en el APK (app.json → plugin expo-font).
 // La interfaz solo usa 400 y 500; el 600 es exclusivo del logo.
 type Family = 'sans' | 'mono';
@@ -36,6 +38,15 @@ export const typography = {
   // Mono: todo número que cambie en vivo (cada dígito ocupa el mismo ancho y no "baila").
   dataLg: { ...fontFace('mono', 500), fontSize: 28, lineHeight: 32 },
   data: { ...fontFace('mono', 400), fontSize: 13, lineHeight: 16 },
+
+  // Logo: Geist 500 (se probó 600 y se veía grueso). Solo para el logo, nunca para texto de interfaz.
+  // El interlineado de 1.3 es la altura natural de Geist (ascendente + descendente):
+  // así el texto no queda desplazado y se puede ubicar el punto con precisión (ver ui/logo.tsx).
+  logo: {
+    ...fontFace('sans', LOGO.weight),
+    fontSize: LOGO.fontSize,
+    lineHeight: LOGO.fontSize * LOGO.lineHeight,
+  },
 
   // Etiqueta técnica: máximo una por sección. Tracking de 0.12em = 11 × 0.12.
   label: {

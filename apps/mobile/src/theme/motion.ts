@@ -11,9 +11,14 @@ export const duration = {
 // Curva de salida: arranca rápido y frena al final. Sin rebotes.
 export const easeOut = Easing.out(Easing.cubic);
 
-// Animación de entrada (excepción aprobada: hasta 1 s en total).
+// Curva suave de ida y vuelta: para el parpadeo del punto, que se apaga y se enciende sin cortes.
+export const easeInOut = Easing.inOut(Easing.quad);
+
+// Animación de entrada. Arranca cuando el splash (que ya muestra el logo) cede el lugar a la app.
+// Total después del splash: 1500 + 350 = 1.85 s (excepción aprobada: hasta 2.5 s).
 export const intro = {
-  letter: 80, // intervalo entre letras al "teclear" el logo
-  dot: 150, // aparición del punto rojo
-  hold: 300, // pausa con el logo completo antes de pasar a la app
+  hold: 1500, // logo quieto, contando desde el relevo del splash
+  blinkDelay: 300, // dentro de la pausa: cuándo parpadea el punto (termina a los 740 ms; luego ~760 ms de calma)
+  blink: 220, // duración de cada mitad del parpadeo (se desvanece, reaparece)
+  exit: 350, // el logo se desvanece y se ve la app
 } as const;

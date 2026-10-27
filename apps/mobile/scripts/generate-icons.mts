@@ -1,12 +1,15 @@
-// Genera el ícono de Tally (SVG fuente + PNG que usa Expo): la palabra "Tally" en Geist con el punto tally.
+// Genera el ícono y el splash de Tally (SVG fuente + PNG que usa Expo): la palabra "Tally"
+// en Geist con el punto tally.
 // Uso, desde apps/mobile: pnpm icons
-// Después de correrlo hay que recompilar la app (el ícono es parte de la capa nativa).
+// Después de correrlo hay que recompilar la app (el ícono y el splash son parte de la capa nativa).
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { Resvg } from '@resvg/resvg-js';
 import opentype from 'opentype.js';
+
+import { LOGO, LOGO_HEIGHT, LOGO_WIDTH } from '../src/theme/logo.ts';
 
 // Los mismos valores que los tokens de la app (skill de diseño, sección 4).
 const COLORS = {
@@ -33,6 +36,30 @@ const WIDTH_FULL = 760; // ícono completo (iOS y respaldo): ~74 % del lienzo
 const WIDTH_ADAPTIVE = 560; // capa frontal de Android: queda dentro del círculo seguro (61 % central)
 
 const font = opentype.loadSync(FONT_FILE);
+
+// Splash: el mismo logo que dibuja la app (ui/logo.tsx), con las medidas de theme/logo.ts.
+// Expo coloca la imagen como un cuadrado de SPLASH_DP de lado, centrado en pantalla
+// (`imageWidth` del plugin expo-splash-screen en app.json: deben coincidir).
+const SPLASH_DP = 200;
+const SPLASH_FONT_FILE = join(ASSETS, 'fonts', 'Geist-Medium.ttf'); // LOGO.weight = 500
+const splashFont = opentype.loadSync(SPLASH_FONT_FILE);
+
+function splashLogo(): string {
+  const px = SIZE / SPLASH_DP; // píxeles de la imagen por cada dp
+  const f = LOGO.fontSize;
+  // Caja del logo centrada en el cuadro, igual que la centra la animación en pantalla.
+  const left = (SPLASH_DP - LOGO_WIDTH) / 2;
+  const top = (SPLASH_DP - LOGO_HEIGHT) / 2;
+  // La línea base queda a `ascender` del borde superior de la línea de texto.
+  const text = splashFont.getPath(LOGO.word, left * px, (top + f * LOGO.ascender) * px, f * px);
+  const r = (f * LOGO.dotSize) / 2;
+  const cx = left + f * (LOGO.advance + LOGO.dotGap) + r;
+  const cy = top + f * LOGO.capTop + r;
+  return (
+    `<path d="${text.toPathData(2)}" fill="${COLORS.accent}"/>` +
+    `<circle cx="${(cx * px).toFixed(2)}" cy="${(cy * px).toFixed(2)}" r="${(r * px).toFixed(2)}" fill="${COLORS.live}"/>`
+  );
+}
 
 type Colors = { text: string; dot: string };
 
@@ -95,8 +122,8 @@ writeFileSync(join(imagesDir, 'icon.png'), png(icon));
 writeFileSync(join(imagesDir, 'android-icon-foreground.png'), png(foreground));
 writeFileSync(join(imagesDir, 'android-icon-monochrome.png'), png(monochrome));
 writeFileSync(join(imagesDir, 'android-icon-background.png'), png(background));
-// El splash nativo solo muestra el fondo: el logo aparece con la animación de entrada.
-// Se usa una imagen transparente porque, sin imagen, Android 12+ puede mostrar el ícono de la app.
-writeFileSync(join(imagesDir, 'splash-icon.png'), png(svg('')));
+// El splash muestra el logo fijo; la animación de entrada arranca desde ese mismo logo.
+writeFileSync(join(brandDir, 'splash.svg'), svg(splashLogo()));
+writeFileSync(join(imagesDir, 'splash-icon.png'), png(svg(splashLogo())));
 
 console.log('Íconos generados en assets/brand y assets/images.');
