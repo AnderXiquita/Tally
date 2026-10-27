@@ -1,8 +1,7 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-// Temporal: este color pasa al token `canvas` cuando exista src/theme (paso 5).
-const CANVAS = '#121212';
+import { colors } from '@/theme';
 
 export default function RootLayout() {
   return (
@@ -11,7 +10,7 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: CANVAS },
+          contentStyle: { backgroundColor: colors.canvas },
         }}
       />
     </>
