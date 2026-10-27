@@ -13,7 +13,7 @@ import { LOGO, LOGO_HEIGHT, LOGO_WIDTH } from '../src/theme/logo.ts';
 
 // Los mismos valores que los tokens de la app (skill de diseño, sección 4).
 const COLORS = {
-  canvas: '#121212',
+  canvas: '#000000',
   accent: '#EDE6D6',
   live: '#D0101C',
 };

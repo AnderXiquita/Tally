@@ -3,6 +3,7 @@ export const radii = {
   none: 0, // pantalla completa, separadores
   tile: 3, // vistas previas de video: casi rectas, como los monitores de una sala de control
   control: 10, // campos de texto, controles secundarios, menús
+  panel: 16, // paneles con foto de las pantallas editoriales (inicio, bienvenida)
   sheet: 20, // solo las esquinas superiores de las hojas inferiores
   pill: 999, // solo el botón de acción principal
 } as const;
