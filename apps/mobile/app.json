@@ -1,33 +1,68 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Tally",
+    "slug": "tally",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile",
-    "userInterfaceStyle": "automatic",
+    "scheme": "tally",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#121212",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.abimaellopez.tally"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#121212",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.mobile"
+      "package": "com.abimaellopez.tally"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#121212",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 100
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Geist",
+                "fontDefinitions": [
+                  { "path": "./assets/fonts/Geist-Regular.ttf", "weight": 400 },
+                  { "path": "./assets/fonts/Geist-Medium.ttf", "weight": 500 },
+                  { "path": "./assets/fonts/Geist-SemiBold.ttf", "weight": 600 }
+                ]
+              },
+              {
+                "fontFamily": "GeistMono",
+                "fontDefinitions": [
+                  { "path": "./assets/fonts/GeistMono-Regular.ttf", "weight": 400 },
+                  { "path": "./assets/fonts/GeistMono-Medium.ttf", "weight": 500 }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": [
+              "./assets/fonts/Geist-Regular.ttf",
+              "./assets/fonts/Geist-Medium.ttf",
+              "./assets/fonts/Geist-SemiBold.ttf",
+              "./assets/fonts/GeistMono-Regular.ttf",
+              "./assets/fonts/GeistMono-Medium.ttf"
+            ]
+          }
         }
       ]
     ],
