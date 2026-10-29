@@ -36,6 +36,7 @@ export const typography = {
   callout: { ...fontFace('sans', 400), fontSize: 13, lineHeight: 18 },
   button: { ...fontFace('sans', 500), fontSize: 15, lineHeight: 20 },
 
+  code: { ...fontFace('mono', 500), fontSize: 44, lineHeight: 52, letterSpacing: 2 },
   dataLg: { ...fontFace('mono', 500), fontSize: 28, lineHeight: 32 },
   data: { ...fontFace('mono', 400), fontSize: 13, lineHeight: 16 },
 

@@ -19,7 +19,11 @@ export default function RootLayout() {
           headerShown: false,
           contentStyle: { backgroundColor: colors.canvas },
         }}
-      />
+      >
+        <Stack.Screen name="add-cameras" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="go-live" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="control" options={{ presentation: 'modal' }} />
+      </Stack>
       {showIntro && <IntroOverlay onDone={() => setShowIntro(false)} />}
     </>
   );

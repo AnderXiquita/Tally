@@ -25,30 +25,35 @@ export default function HomeScreen() {
       <View style={styles.body}>
         <View style={styles.panels}>
           <RolePanel
-            label="Crear producción"
+            label="Transmitir en vivo"
             image={DIRECTOR_IMAGE}
             aspectRatio={PANEL_ASPECT}
-            onPress={() => router.push('/create')}
+            onPress={() => router.push('/start')}
           >
-            <Text variant="title" style={[styles.icon, styles.iconRight]} accessible={false}>
-              +
+            <Text
+              variant="title"
+              color="accent"
+              style={[styles.icon, styles.iconRight]}
+              accessible={false}
+            >
+              ●
             </Text>
             <View style={[styles.phrase, styles.phraseTop]}>
-              <Text variant="callout">Tú eliges</Text>
+              <Text variant="callout">Empieza solo,</Text>
               <Text variant="callout" style={styles.indent}>
-                qué sale al aire.
+                suma cámaras después.
               </Text>
             </View>
             <View style={styles.actionLeft}>
               <Text variant="data" color="textSecondary">
-                director
+                en vivo
               </Text>
-              <Text variant="heading">Crear producción</Text>
+              <Text variant="heading">Transmitir en vivo</Text>
             </View>
           </RolePanel>
 
           <RolePanel
-            label="Unirse a una producción"
+            label="Unirse a una transmisión"
             image={CAMERA_IMAGE}
             aspectRatio={PANEL_ASPECT}
             onPress={() => router.push('/join')}
@@ -67,7 +72,7 @@ export default function HomeScreen() {
                 cámara
               </Text>
               <Text variant="heading" style={styles.right}>
-                Unirse a una producción
+                Unirse a una transmisión
               </Text>
             </View>
           </RolePanel>

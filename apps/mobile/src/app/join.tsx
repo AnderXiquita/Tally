@@ -4,7 +4,7 @@ import { Screen, Text } from '@/ui';
 export default function JoinProductionScreen() {
   return (
     <Screen>
-      <Text variant="title">Unirse a una producción</Text>
+      <Text variant="title">Unirse a una transmisión</Text>
     </Screen>
   );
 }
